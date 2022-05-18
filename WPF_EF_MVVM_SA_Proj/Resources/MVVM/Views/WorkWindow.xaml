@@ -1,0 +1,122 @@
+﻿<Window x:Class="WPF_EF_MVVM_SA_Proj.Resources.MVVM.Views.WorkWindow"
+        Icon="\Resources\Images\Logo.png"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_EF_MVVM_SA_Proj.Resources.MVVM.Views"
+        xmlns:viewModels="clr-namespace:WPF_EF_MVVM_SA_Proj.Resources.MVVM.ViewModels"
+        mc:Ignorable="d"
+        x:Name="MainWorkWindow"
+        Title="WorkWindow" Height="450" Width="800" Background="#1F2833"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"  ResizeMode="NoResize"
+        xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+    <Window.DataContext>
+        <viewModels:WorkWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Name="DragDropBorder" Background="#226F6F" MouseLeftButtonDown="DragDropBorder_MouseLeftButtonDown">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.04*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                </Grid.ColumnDefinitions>
+                <Image Style="{StaticResource WindowIcon}"/>
+                <Label Name="WindowName"
+                   Grid.Column="1"
+                   Content="ПРОСМОТР ОЦЕНОК"
+                   Foreground="White"/>
+                <StackPanel Grid.Column="2"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <Button Name="HideButton"
+                            Width="25"
+                            Style="{StaticResource HideButton}" Click="HideButton_Click">
+                    </Button>
+                    <Button Name="ExitButton"
+                            Width="25"
+                            Style="{StaticResource ExitButton}" Click="ExitButton_Click">
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border x:Name="ToolBar"
+                Grid.Row="1"
+                Background="#154444">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Name="WorkWindowTitle"
+                        Style="{StaticResource WorkWindowTitle}"
+                        Grid.Column="0"
+                        Width="100"/>
+                <StackPanel Grid.Column="1" 
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Left">
+                    <!--Открыть окно редактирования-->
+                    <Button x:Name="ShowEditWindow" Width="37"
+                            Style="{StaticResource ShowEditWindowButton}"
+                            Command="{Binding OpenDeleteEditWindow}"/>
+                    <!--Оценка по (студент по группе)-->
+                    <Button x:Name="SearchStudent" Width="37"
+                            Style="{StaticResource SearchStudentWindowButton}"
+                            Command="{Binding OpenSearchStudentWindow}"/>
+                    <!--Оценка по (Дисциплине)-->
+                    <Button x:Name="SearchDiscipline" Width="37"
+                            Style="{StaticResource SearchDisciplineWindowButton}"
+                            Command="{Binding OpenSearchDisciplineWindow}"/>
+                    <!--Оценка по (Группе)-->
+                    <Button x:Name="SearchGroup" Width="37"
+                            Style="{StaticResource SearchGroupWindowButton}"
+                            Command="{Binding OpenSearchGroupWindow}"/>
+                    <!--Оценка по (Дисциплине и Студенту)-->
+                    <Button x:Name="SearchStudentDiscipline" Width="37"
+                            Style="{StaticResource SearchDisciplineStudentWindowButton}"
+                            Command="{Binding OpenSearchStudentDisciplineWindow}"/>
+                    <!--Убрать фильтр-->
+                    <Button x:Name="StandartView" Width="37"
+                            Style="{StaticResource CleanViewButton}"
+                            Command="{Binding StandartWorkWindowView}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <ListView  x:Name="GradeInfoListView"
+                      Grid.Row="2"
+                      Foreground="Black"
+                   Background="LightGray"
+                      ItemsSource="{Binding AllGrades}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=GradeStudent.StudentFIO}">
+                        <Border>
+                            <TextBlock Text="Ф.И.О" FontWeight="Bold" FontSize="16"/>
+                        </Border>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=GradeDiscipline.DisciplineName}">
+                        <Border>
+                            <TextBlock Text="Дисциплина" FontWeight="Bold" FontSize="16"/>
+                        </Border>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=GradeValue}">
+                        <Border>
+                            <TextBlock Text="Оценка" FontWeight="Bold" FontSize="16"/>
+                        </Border>
+                    </GridViewColumn>
+                    <GridViewColumn  DisplayMemberBinding="{Binding Path=Date, StringFormat=\{0:dd.MM.yyyy\}}">
+                        <Border>
+                            <TextBlock Text="Дата" FontWeight="Bold" FontSize="16"/>
+                        </Border>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
