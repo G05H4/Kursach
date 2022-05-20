@@ -21,7 +21,7 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Views
     /// </summary>
     public partial class EditStudentWindow : Window
     {
-        public EditStudentWindow(Student studentToEdit)
+        public EditStudentWindow(Teacher studentToEdit)
         {
             InitializeComponent();
             DataManageVM.SelectedStudent = studentToEdit;

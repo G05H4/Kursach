@@ -18,7 +18,7 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Views
 {
     public partial class EditGradeWindow : Window
     {
-        public EditGradeWindow(Grade gradeToEdit)
+        public EditGradeWindow(BusyCabinet gradeToEdit)
         {
             InitializeComponent();
             this.DatePick.SelectedDate = DateTime.Today;

@@ -127,17 +127,17 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.ViewModels
             EditGroupWindow newEditGroupWindow = new EditGroupWindow(group);
             SetCenterPositionAndOpen(newEditGroupWindow);
         }
-        private void OpenEditGradeWindowMethod(Grade grade)
+        private void OpenEditGradeWindowMethod(BusyCabinet grade)
         {
             EditGradeWindow newEditGradeWindow = new EditGradeWindow(grade);
             SetCenterPositionAndOpen(newEditGradeWindow);
         }
-        private void OpenEditStudentWindowMethod(Student student)
+        private void OpenEditStudentWindowMethod(Teacher student)
         {
             EditStudentWindow newEditStudentWindow = new EditStudentWindow(student);
             SetCenterPositionAndOpen(newEditStudentWindow);
         }
-        private void OpenEditDisciplineWindowMethod(Discipline discipline)
+        private void OpenEditDisciplineWindowMethod(Cabinet discipline)
         {
             EditDisciplineWindow newEditDisciplineWindow = new EditDisciplineWindow(discipline);
             SetCenterPositionAndOpen(newEditDisciplineWindow);

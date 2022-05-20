@@ -15,8 +15,8 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.ViewModels
     public class DataManageVM : INotifyPropertyChanged
     {
         //все Студенты
-        private List<Student> allStudents = DataWorker.GetAllStudents();
-        public List<Student> AllStudents
+        private List<Teacher> allStudents = DataWorker.GetAllStudents();
+        public List<Teacher> AllStudents
         {
             get { return allStudents; }
             set
@@ -26,8 +26,8 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.ViewModels
             }
         }
         //все Дисциплины
-        private List<Discipline> allDisciplines = DataWorker.GetAllDisciplines();
-        public List<Discipline> AllDisciplines
+        private List<Cabinet> allDisciplines = DataWorker.GetAllDisciplines();
+        public List<Cabinet> AllDisciplines
         {
             get { return allDisciplines; }
             set
@@ -49,8 +49,8 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.ViewModels
         }
 
         //все Оценки
-        private List<Grade> allGrades = DataWorker.GetAllGrades();
-        public List<Grade> AllGrades
+        private List<BusyCabinet> allGrades = DataWorker.GetAllGrades();
+        public List<BusyCabinet> AllGrades
         {
             get { return allGrades; }
             set
@@ -60,8 +60,8 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.ViewModels
             }
         }
         //все Оценки по студенту
-        private List<Grade> allGradesByStudentId;
-        public List<Grade> AllGradesByStudentId
+        private List<BusyCabinet> allGradesByStudentId;
+        public List<BusyCabinet> AllGradesByStudentId
         {
             get { return allGradesByStudentId; }
             set
@@ -71,8 +71,8 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.ViewModels
             }
         }
         //все Студенты по группе
-        private List<Student> allStudentsByGroupId;
-        public List<Student> AllStudentsByGroupId
+        private List<Teacher> allStudentsByGroupId;
+        public List<Teacher> AllStudentsByGroupId
         {
             get { return allStudentsByGroupId; }
             set
@@ -82,8 +82,8 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.ViewModels
             }
         }
         //все Оценки по дисциплине
-        private List<Grade> allGradesByDisciplineId;
-        public List<Grade> AllGradesByDisciplineId
+        private List<BusyCabinet> allGradesByDisciplineId;
+        public List<BusyCabinet> AllGradesByDisciplineId
         {
             get { return allGradesByDisciplineId; }
             set
@@ -93,8 +93,8 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.ViewModels
             }
         }
         //все Оценки по группе
-        private List<Grade> allGradesByGroupId;
-        public List<Grade> AllGradesByGroupId
+        private List<BusyCabinet> allGradesByGroupId;
+        public List<BusyCabinet> AllGradesByGroupId
         {
             get { return allGradesByGroupId; }
             set
@@ -104,8 +104,8 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.ViewModels
             }
         }
         //все Оценки по студенту и дисциплине
-        private List<Grade> allGradesByStudentDisciplineId;
-        public List<Grade> AllGradesByStudentDisciplineId
+        private List<BusyCabinet> allGradesByStudentDisciplineId;
+        public List<BusyCabinet> AllGradesByStudentDisciplineId
         {
             get { return allGradesByStudentDisciplineId; }
             set
@@ -120,29 +120,29 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.ViewModels
         public static string GroupName { get; set; }
         public static int Course { get; set; }
         //свойства для дисциплин
-        public static Discipline DisciplineInf { get; set; }
+        public static Cabinet DisciplineInf { get; set; }
         public static string DisciplineName { get; set; }
         //свойства для пользователя
         public static string Login { get; set; }
         public static string Password { get; set; }
         //свойства для Студента
-        public static Student StudentInf { get; set; }
+        public static Teacher StudentInf { get; set; }
         public static string StudentFIO { get; set; }
         public static Group StudentGroup { get; set; }
 
         //свойства для Оценки
-        public static Student GradeStudent { get; set; }
-        public static Discipline GradeDiscipline { get; set; }
+        public static Teacher GradeStudent { get; set; }
+        public static Cabinet GradeDiscipline { get; set; }
         public static int GradeValue { get; set; }
         public static DateTime Date { get; set; }
 
 
         //свойства для выделенных элементов
         public TabItem SelectedTabItem { get; set; }
-        public static Student SelectedStudent { get; set; }
+        public static Teacher SelectedStudent { get; set; }
         public static Group SelectedGroup { get; set; }
-        public static Grade SelectedGrade { get; set; }
-        public static Discipline SelectedDiscipline { get; set; }
+        public static BusyCabinet SelectedGrade { get; set; }
+        public static Cabinet SelectedDiscipline { get; set; }
 
         #region METHODS TO OPEN WINDOW
 

@@ -21,7 +21,7 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Views
     /// </summary>
     public partial class EditDisciplineWindow : Window
     {
-        public EditDisciplineWindow(Discipline disciplineToEdit)
+        public EditDisciplineWindow(Cabinet disciplineToEdit)
         {
             InitializeComponent();
             DataManageVM.SelectedDiscipline = disciplineToEdit;

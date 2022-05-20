@@ -9,7 +9,7 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
     public static class DataWorker
     {
         //получить всех студентов
-        public static List<Student> GetAllStudents()
+        public static List<Teacher> GetAllStudents()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -18,7 +18,7 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
             }
         }
         //получить все оценки
-        public static List<Grade> GetAllGrades()
+        public static List<BusyCabinet> GetAllGrades()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -27,7 +27,7 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
             }
         }
         //получить все Дисциплины
-        public static List<Discipline> GetAllDisciplines()
+        public static List<Cabinet> GetAllDisciplines()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -54,7 +54,7 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
                 bool checkIsExist = db.Students.Any(el => el.StudentFIO == firstName);
                 if (!checkIsExist)
                 {
-                    Student newStudent = new Student
+                    Teacher newStudent = new Teacher
                     {
                         StudentFIO = firstName,
                         GroupId=group.Id
@@ -89,12 +89,12 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
             }
         }
         //содать Оценку
-        public static string CreateGrade(int grade,DateTime date, Discipline discipline,Student student)
+        public static string CreateGrade(int grade,DateTime date, Cabinet discipline,Teacher student)
         {
             string result = "Уже существует";
             using (ApplicationContext db = new ApplicationContext())
             {
-                Grade newGrade = new Grade
+                BusyCabinet newGrade = new BusyCabinet
                 {
                     StudentId = student.Id,
                     DisciplineId = discipline.Id,
@@ -117,7 +117,7 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
                 bool checkIsExist = db.Disciplines.Any(el => el.DisciplineName==disciplineName);
                 if (!checkIsExist)
                 {
-                    Discipline newDiscipline = new Discipline
+                    Cabinet newDiscipline = new Cabinet
                     {
                         DisciplineName = disciplineName,
                     };
@@ -158,7 +158,7 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
             }
         }
         //удаление Оценку
-        public static string DeleteGrade(Grade grade)
+        public static string DeleteGrade(BusyCabinet grade)
         {
             string result = "Такой оценки не существует";
             using (ApplicationContext db = new ApplicationContext())
@@ -170,7 +170,7 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
             return result;
         }
         //удаление Студента
-        public static string DeleteStudent(Student student)
+        public static string DeleteStudent(Teacher student)
         {
             string result = "Такого студента не существует";
             using (ApplicationContext db = new ApplicationContext())
@@ -182,7 +182,7 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
             return result;
         }
         //удаление Дисциплины
-        public static string DeleteDiscipline(Discipline discipline)
+        public static string DeleteDiscipline(Cabinet discipline)
         {
             string result = "Такой дисциплины не существует";
             using (ApplicationContext db = new ApplicationContext())
@@ -224,12 +224,12 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
         }
 
         //редактирование Студента
-        public static string EditStudent(Student oldStudent, string newFIO,Group newGroup)
+        public static string EditStudent(Teacher oldStudent, string newFIO,Group newGroup)
         {
             string result = "Такого студента не существует";
             using (ApplicationContext db = new ApplicationContext())
             {
-                Student student = db.Students.FirstOrDefault(student => student.Id == oldStudent.Id);
+                Teacher student = db.Students.FirstOrDefault(student => student.Id == oldStudent.Id);
                 student.StudentFIO = newFIO;
                 student.GroupId = newGroup.Id;
                 db.SaveChanges();
@@ -238,12 +238,12 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
             return result;
         }
         //редактирование Дисиплины
-        public static string EditDiscipline(Discipline oldDiscipline, string newDisciplineName)
+        public static string EditDiscipline(Cabinet oldDiscipline, string newDisciplineName)
         {
             string result = "Такой дисциплины не существует";
             using (ApplicationContext db = new ApplicationContext())
             {
-                Discipline discipline = db.Disciplines.FirstOrDefault(discipline => discipline.Id == oldDiscipline.Id);
+                Cabinet discipline = db.Disciplines.FirstOrDefault(discipline => discipline.Id == oldDiscipline.Id);
                 discipline.DisciplineName = newDisciplineName;
                 db.SaveChanges();
                 result = $"Сделано! Дисциплина {discipline.DisciplineName} изменена!";
@@ -251,13 +251,13 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
             return result;
         }
         //редактирование Оценки
-        public static string EditGrade(Grade oldGrade, Student newStudent, Discipline newDiscipline, int newGradeValue,DateTime newDate)
+        public static string EditGrade(BusyCabinet oldGrade, Teacher newStudent, Cabinet newDiscipline, int newGradeValue,DateTime newDate)
         {
             string result = "Такой оценки не существует";
             using (ApplicationContext db = new ApplicationContext())
             {
                 //check user is exist
-                Grade grade = db.Grades.FirstOrDefault(grade => grade.Id == oldGrade.Id);
+                BusyCabinet grade = db.Grades.FirstOrDefault(grade => grade.Id == oldGrade.Id);
                 if (grade != null)
                 {
                     grade.StudentId = newStudent.Id;
@@ -271,29 +271,29 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
             return result;
         }
         //получение студента по id студента
-        public static Student GetStudentById(int id)
+        public static Teacher GetStudentById(int id)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                Student student = db.Students.FirstOrDefault(st => st.Id == id);
+                Teacher student = db.Students.FirstOrDefault(st => st.Id == id);
                 return student;
             }
         }
         //получение дисциплины по id дисциплины
-        public static Discipline GetDisciplineById(int id)
+        public static Cabinet GetDisciplineById(int id)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                Discipline discipline = db.Disciplines.FirstOrDefault(dis => dis.Id == id);
+                Cabinet discipline = db.Disciplines.FirstOrDefault(dis => dis.Id == id);
                 return discipline;
             }
         }
         //получение оценки по id оценки
-        public static Grade GetGradeById(int id)
+        public static BusyCabinet GetGradeById(int id)
         {
             using(ApplicationContext db = new ApplicationContext())
             {
-                Grade grade = db.Grades.FirstOrDefault(grd => grd.Id == id);
+                BusyCabinet grade = db.Grades.FirstOrDefault(grd => grd.Id == id);
                 return grade;
             }
         }
@@ -307,56 +307,56 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
             }
         }
         //получение всех студентов по id группы
-        public static List<Student> GetAllStudentsByGroupId(int id)
+        public static List<Teacher> GetAllStudentsByGroupId(int id)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                List<Student> students = (from student in GetAllStudents() where student.GroupId == id select student).ToList();
+                List<Teacher> students = (from student in GetAllStudents() where student.GroupId == id select student).ToList();
                 return students;
             }
         }
         //получение всех оценок по id дисциплины
-        public static List<Grade> GetAllGradesByDisciplineId(int id)
+        public static List<BusyCabinet> GetAllGradesByDisciplineId(int id)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                List<Grade> grades = (from grade in GetAllGrades() where grade.DisciplineId == id select grade).ToList();
+                List<BusyCabinet> grades = (from grade in GetAllGrades() where grade.DisciplineId == id select grade).ToList();
                 return grades;
             }
         }
         //получение всех оценок по id студента
-        public static List<Grade> GetAllGradesByGroupId(int id)
+        public static List<BusyCabinet> GetAllGradesByGroupId(int id)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                List<Grade> grades = (from grade in GetAllGrades() where grade.GradeStudent.GroupId == id select grade).ToList();
+                List<BusyCabinet> grades = (from grade in GetAllGrades() where grade.GradeStudent.GroupId == id select grade).ToList();
                 return grades;
             }
         }
         //получение всех оценок по id студента и дсициплины
-        public static List<Grade> GetAllGradesByStudentDisciplineId(int studentId, int disciplineId)
+        public static List<BusyCabinet> GetAllGradesByStudentDisciplineId(int studentId, int disciplineId)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                List<Grade> grades = (from grade in GetAllGrades() where grade.StudentId == studentId && grade.DisciplineId == disciplineId select grade).ToList();
+                List<BusyCabinet> grades = (from grade in GetAllGrades() where grade.StudentId == studentId && grade.DisciplineId == disciplineId select grade).ToList();
                 return grades;
             }
         }
         //получение всех оценок по id студента
-        public static List<Grade> GetAllGradesByStudentId(int id)
+        public static List<BusyCabinet> GetAllGradesByStudentId(int id)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                List<Grade> grades = (from grade in GetAllGrades() where grade.StudentId == id select grade).ToList();
+                List<BusyCabinet> grades = (from grade in GetAllGrades() where grade.StudentId == id select grade).ToList();
                 return grades;
             }
         }
         //получение всех оценок по id студента
-        public static List<Grade> GetAllGradesByStudentAndDisciplineId(int id)
+        public static List<BusyCabinet> GetAllGradesByStudentAndDisciplineId(int id)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                List<Grade> grades = (from grade in GetAllGrades() where grade.StudentId == id && grade.DisciplineId == id select grade).ToList();
+                List<BusyCabinet> grades = (from grade in GetAllGrades() where grade.StudentId == id && grade.DisciplineId == id select grade).ToList();
                 return grades;
             }
         }
@@ -366,7 +366,7 @@ namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                Student student = db.Students.FirstOrDefault(student => student.Id == gradeId);
+                Teacher student = db.Students.FirstOrDefault(student => student.Id == gradeId);
                 return student.StudentFIO;
             }
         }

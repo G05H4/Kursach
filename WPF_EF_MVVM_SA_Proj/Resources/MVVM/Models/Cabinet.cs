@@ -7,15 +7,10 @@ using System.Threading.Tasks;
 
 namespace WPF_EF_MVVM_SA_Proj.Resources.MVVM.Models
 {
-    public class Group
+    public class Cabinet
     {
-        [Key]
         public int Id { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public string GroupName { get; set; }
-        [Required]
-        public int Course { get; set; }
-
+        public int CabinetNumber { get; set; }
+        public string CabinetName { get; set; } = null!;
     }
 }
